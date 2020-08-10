@@ -92,6 +92,7 @@ namespace ConsoleApp1
 
         static void Main(string[] args)
         {
+            // Process attendee transaction based on the code that comes in.
             var attendeeProcessor = new AttendeeProcessor();
             string processCodeToExecute = "ACAT";
             attendeeProcessor.ProcessAttendeeTransaction(processCodeToExecute);
