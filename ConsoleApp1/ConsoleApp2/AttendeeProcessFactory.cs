@@ -18,7 +18,7 @@ namespace ConsoleApp1
         {
             public void Proccess()
             {
-                Console.WriteLine($"RemoveAttendeeFromEventTransaction");
+                Console.WriteLine($"RemoveAttendeeFromEventTransaction  {ProcessCode()}");
             }
 
             public string ProcessCode()
@@ -31,7 +31,7 @@ namespace ConsoleApp1
         {
             public void Proccess()
             {
-                Console.WriteLine($"MoveAttendeeToEventTransaction");
+                Console.WriteLine($"MoveAttendeeToEventTransaction  {ProcessCode()}");
             }
 
             public string ProcessCode()
@@ -44,7 +44,7 @@ namespace ConsoleApp1
         {
             public void Proccess()
             {
-                Console.WriteLine($"AddAttendeeToEventTransaction");
+                Console.WriteLine($"AddAttendeeToEventTransaction  {ProcessCode()}");
             }
 
             public string ProcessCode()
@@ -57,7 +57,7 @@ namespace ConsoleApp1
         {
             public void Proccess()
             {
-                Console.WriteLine($"AssignCredentialToAttendeeTransaction");
+                Console.WriteLine($"AssignCredentialToAttendeeTransaction {ProcessCode()}");
             }
 
             public string ProcessCode()
@@ -66,26 +66,35 @@ namespace ConsoleApp1
             }
         }
 
-        public class AttendeeProcessor {
+        public class AttendeeProcessor
+        {
 
-            Dictionary<string, IAttendeeProcessor> processors = new Dictionary<string, IAttendeeProcessor>();
+            private Dictionary<string, IAttendeeProcessor> processors = new Dictionary<string, IAttendeeProcessor>();
 
-            public AttendeeProcessor() {
-                foreach (var processor in typeof(IAttendeeProcessor).Assembly.GetTypes()) 
+            public AttendeeProcessor()
+            {
+                foreach (var processor in typeof(IAttendeeProcessor).Assembly.GetTypes())
                 {
-                    var processorInstance = (IAttendeeProcessor)Activator.CreateInstance(processor);
-
-                    if (typeof(IAttendeeProcessor).IsAssignableFrom(processor) && !processor.IsInterface) {
+                    if (typeof(IAttendeeProcessor).IsAssignableFrom(processor) && !processor.IsInterface)
+                    {
+                        var processorInstance = (IAttendeeProcessor)Activator.CreateInstance(processor);
                         processors.Add(processorInstance.ProcessCode(), processorInstance);
-
                     }
                 }
-            } 
+            }
+
+            public void ProcessAttendeeTransaction(string key)
+            {
+                var attendeeTransactionToProcess = this.processors?[key];
+                attendeeTransactionToProcess.Proccess();
+            }
         }
 
         static void Main(string[] args)
         {
-
+            var attendeeProcessor = new AttendeeProcessor();
+            string processCodeToExecute = "ACAT";
+            attendeeProcessor.ProcessAttendeeTransaction(processCodeToExecute);
         }
     }
 }
