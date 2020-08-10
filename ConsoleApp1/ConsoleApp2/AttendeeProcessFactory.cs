@@ -94,8 +94,13 @@ namespace ConsoleApp1
         {
             // Process attendee transaction based on the code that comes in.
             var attendeeProcessor = new AttendeeProcessor();
+
             string processCodeToExecute = "ACAT";
             attendeeProcessor.ProcessAttendeeTransaction(processCodeToExecute);
+
+            processCodeToExecute = "AAET";
+            attendeeProcessor.ProcessAttendeeTransaction(processCodeToExecute);
+
         }
     }
 }
