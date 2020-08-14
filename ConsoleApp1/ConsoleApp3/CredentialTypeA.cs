@@ -6,13 +6,13 @@ namespace ConsoleApp3
 {
     public class CredentialTypeA : Product
     {
-        public int CredentialId { get; set; }
+        public int id { get; set; }
 
-        private string CredentialType { get; set; }
+        private string TypeCode { get; set; }
 
         public CredentialTypeA()
         {
-            this.CredentialType = "CRED_TYPE_A";
+            this.TypeCode = "CRED_TYPE_A";
         }
 
         public override int CreateProductForEvent(int eventId)

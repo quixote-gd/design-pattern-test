@@ -4,14 +4,13 @@ using System.Text;
 
 namespace ConsoleApp3
 {
-    public class CredentialTypeB : Product
+    public class OtherProductType : Product
     {
         public int id { get; set; }
 
         private string TypeCode { get; set; }
 
-
-        public CredentialTypeB()
+        public OtherProductType()
         {
             this.TypeCode = "CRED_TYPE_B";
         }
