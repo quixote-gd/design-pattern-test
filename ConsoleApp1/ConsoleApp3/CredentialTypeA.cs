@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ConsoleApp3
 {
-    public class CredentialTypeA : Product
+    public class CredentialTypeA : Product, IProduct
     {
         public int id { get; set; }
 
@@ -20,14 +20,24 @@ namespace ConsoleApp3
             throw new NotImplementedException();
         }
 
-        public override Product ProcessProduct(int eventId)
+        public override void RemoveProductFromEvent(int productId)
+        {
+            throw new NotImplementedException();
+        }
+        public string GetProductCode()
+        {
+            return this.TypeCode;
+        }
+
+        public override Product SaveProductState(Product p, int eventId)
         {
             throw new NotImplementedException();
         }
 
-        public override void RemoveProductFromEvent(int productId)
+        public void ProcessProduct(int eventId)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Run Business other rules");
+            Console.WriteLine("Save the Product");
         }
     }
 }
