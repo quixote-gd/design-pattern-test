@@ -5,7 +5,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace SemsNet.Classes.AzureRepository
+namespace TestNet.Classes.AzureRepository
 {
     public class SingletonAzureConnection
     {
